@@ -1,0 +1,48 @@
+package sec01.exam01;
+
+import java.util.*;
+
+public class programming {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // 나의 좌표 값
+        System.out.println("나의 좌표 값을 입력하라");
+        int xMy = scanner.nextInt();
+        int yMy = scanner.nextInt();
+
+        int[] brr = {xMy, yMy};
+
+        int[][] arr = new int[10][2];
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println("임의의 좌표 값을 입력하라 (" + (i + 1) + ")");
+            arr[i][0] = scanner.nextInt();
+            arr[i][1] = scanner.nextInt();
+        }
+
+        // 리스트를 만들어서 좌표 빼고 제곱한 것을 넣어줌
+        List<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            int n = 0;
+            for (int j = 0; j < 2; j++) {
+                n += Math.pow(brr[j] - arr[i][j], 2);
+            }
+            list.add(n);
+        }
+
+        // 리스트에 가장 작은 값을 찾아줌
+        int min = list.get(0);
+        int result = 0; // 여기에 result를 선언
+        for (int i = 0; i < list.size(); i++) {
+            if (min > list.get(i)) {
+                min = list.get(i);
+                result = i;
+            }
+        }
+
+        // 나와 가장 가까운 좌표값은 i 번째 성분이다.
+        System.out.println("나와 가장 가까운 좌표값은" + "(" + arr[result][0] + "," + arr[result][1] + ")");
+    }
+}
